@@ -21,14 +21,14 @@ describe('dog routes', () => {
       .send({ 
         name: 'cliffy', 
         age: 2, 
-        weight: '2 lbs' 
+        weight: '2 lbs'
       });
 
     expect(res.body).toEqual({
       id: '1',
       name: 'cliffy',
       age: 2,
-      weight: '2 lbs'
+      weight: '2 lbs',
     });
   });
 });
