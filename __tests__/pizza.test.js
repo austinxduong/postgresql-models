@@ -3,7 +3,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import Pizza from '../lib/models/Pizza.js';
+import Pizza from '../lib/models/Pizza';
 
 describe('pizza', () => {
   beforeEach(() => {
@@ -26,5 +26,34 @@ describe('pizza', () => {
       style: 'greek'
     });
   });
+
+
+
+  it('finds all dogs via GET', async () => {
+
+    const Mykonos = await Pizza.insert({
+      name: 'Mykonos',
+      topping: 'feta',
+      style: 'greek'
+    });
+
+    const Newyork = await Pizza.insert({
+      name: 'Newyork',
+      topping: 'saucy',
+      style: 'italian'
+    });
+
+    const Spicy = await Pizza.insert({
+      name: 'Spicy',
+      topping: 'pepper',
+      style: '4 lbs'
+    });
+
+    const res = await request(app)
+      .get('/api/v1/pizza');
+    // console.log(res.body);
+    expect(res.body).toEqual([Mykonos, Newyork, Spicy]);
+  });
+
 
 });
