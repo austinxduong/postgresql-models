@@ -29,7 +29,7 @@ describe('pizza', () => {
 
 
 
-  it('finds all dogs via GET', async () => {
+  it('finds all pizza via GET', async () => {
 
     const Mykonos = await Pizza.insert({
       name: 'Mykonos',
@@ -55,5 +55,17 @@ describe('pizza', () => {
     expect(res.body).toEqual([Mykonos, Newyork, Spicy]);
   });
 
+  
+  it('finds a pizza by id via GET', async () => {
+    const pizza = await Pizza.insert({
+      name: 'Mykonos',
+      topping: 'feta',
+      style: 'greek'
+    });
+
+    const res = await request(app).get(`/api/v1/pizza/${pizza.id}`);
+
+    expect(res.body).toEqual(pizza);
+  });
 
 });
