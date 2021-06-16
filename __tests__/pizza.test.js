@@ -68,4 +68,22 @@ describe('pizza', () => {
     expect(res.body).toEqual(pizza);
   });
 
+//.put will circle back to this..... start with .delete next
+
+
+
+  it('delete a pizza by id via DELETE', async () => {
+    const pizza = await Pizza.insert({
+      name: 'Mykonos',
+      topping: 'feta',
+      style: 'greek'
+    });
+    
+    const res = await request(app).delete(`/api/v1/pizza/${pizza.id}`);
+
+    expect(res.body).toEqual(pizza);
+    
+
+  });
+
 });
