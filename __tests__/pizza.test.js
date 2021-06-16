@@ -69,21 +69,6 @@ describe('pizza', () => {
   });
 
 
-  it('updates a pizza by id via PUT', async () => {
-    const pizza = await Pizza.insert({
-      name: 'Mykonos',
-      topping: 'feta',
-      style: 'greek'
-
-    });
-
-    pizza.style = 'greek';
-
-    const res = await request(app).put(`/api/v1/dogs/${pizza.id}`)
-      .send(pizza);
-    expect(res.body).toEqual(pizza);
-  });
-
   it('delete a pizza by id via DELETE', async () => {
     const pizza = await Pizza.insert({
       name: 'Mykonos',
@@ -96,6 +81,21 @@ describe('pizza', () => {
     expect(res.body).toEqual(pizza);
     
 
+  });
+
+  it('updates a pizza by id via PUT', async () => {
+    const pizza = await Pizza.insert({
+      name: 'Mykonos',
+      topping: 'feta',
+      style: 'greek'
+
+    });
+
+    pizza.style = 'greek';
+
+    const res = await request(app).put(`/api/v1/pizza/${pizza.id}`)
+      .send(pizza);
+    expect(res.body).toEqual(pizza);
   });
 
 });
