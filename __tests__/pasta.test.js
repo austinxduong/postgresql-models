@@ -3,7 +3,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import Pasta from '../lib/models/Pasta';
+// import Pasta from '../lib/models/Pasta.js';
 
 describe('pasta', () => {
   beforeEach(() => {
@@ -14,16 +14,20 @@ describe('pasta', () => {
     const res = await request(app)
       .post('/api/v1/pasta')
       .send({ 
-        name: 'Cupid',
+        name: 'test', 
         sauce: 'marinara', 
-        noodle: 'angel hair' 
+        noodle: 'shell' 
       });
   
     expect(res.body).toEqual({
       id: '1',
-      name: 'Cupid',
+      name: 'test',
       sauce: 'marinara',
-      noodle: 'angel hair'
+      noodle: 'shell'
     });
   });
+
 });
+
+
+

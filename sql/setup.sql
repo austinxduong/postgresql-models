@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS dogs, pizza;
+DROP TABLE IF EXISTS dogs, pizza, pasta;
 
 CREATE TABLE dogs (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -14,4 +14,11 @@ CREATE TABLE pizza (
     name TEXT NOT NULL,
     topping TEXT,
     style TEXT
+);
+
+CREATE TABLE pasta (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    sauce TEXT,
+    noodle TEXT
 );
