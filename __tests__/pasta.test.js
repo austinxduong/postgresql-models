@@ -3,6 +3,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Pasta from '../lib/models/Pasta.js';
 // import Pasta from '../lib/models/Pasta.js';
 
 describe('pasta', () => {
@@ -25,6 +26,32 @@ describe('pasta', () => {
       sauce: 'marinara',
       noodle: 'shell'
     });
+  });
+
+  it('finds all pasta via GET', async () => {
+
+    const test = await Pasta.insert({
+      name: 'test',
+      sauce: 'mmarinara',
+      noodle: 'shell'
+    });
+
+    const Newyork = await Pasta.insert({
+      name: 'Newyork',
+      sauce: 'cheese',
+      noodle: 'ravioli'
+    });
+
+    const Spicy = await Pasta.insert({
+      name: 'Spicy',
+      topping: 'pepper',
+      style: 'padthai'
+    });
+
+    const res = await request(app)
+      .get('/api/v1/pasta');
+    // console.log(res.body);
+    expect(res.body).toEqual([test, Newyork, Spicy]);
   });
 
 });
