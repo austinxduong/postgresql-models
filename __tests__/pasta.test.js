@@ -4,6 +4,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 import Pasta from '../lib/models/Pasta.js';
+import pasta from '../lib/controllers/pasta.js';
 // import Pasta from '../lib/models/Pasta.js';
 
 describe('pasta', () => {
@@ -80,7 +81,26 @@ describe('pasta', () => {
     
 
   });
+
+
+
+  it('updates a pasta by id via PUT', async () => {
+    const Pasta = await Pasta.insert({
+      name: 'Newyork',
+      topping: 'cheese',
+      style: 'ravioli'
+
+    });
+
+    pasta.style = 'pasta';
+
+    const res = await request(app).put(`/api/v1/pasta/${pasta.id}`)
+      .send(pasta);
+    expect(res.body).toEqual(pasta);
+  });
+
 });
+
 
 
 
