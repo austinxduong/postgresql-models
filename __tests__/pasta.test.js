@@ -54,6 +54,18 @@ describe('pasta', () => {
     expect(res.body).toEqual([test, Newyork, Spicy]);
   });
 
+
+  it('finds a pasta by id via GET', async () => {
+    const pasta = await Pasta.insert({
+      name: 'Spicy',
+      topping: 'pepper',
+      style: 'padthai'
+    });
+
+    const res = await request(app).get(`/api/v1/pasta/${pasta.id}`);
+
+    expect(res.body).toEqual(pasta);
+  });
 });
 
 
