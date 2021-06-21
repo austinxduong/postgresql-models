@@ -66,6 +66,20 @@ describe('pasta', () => {
 
     expect(res.body).toEqual(pasta);
   });
+
+  it('delete a pasta by id via DELETE', async () => {
+    const pasta = await Pasta.insert({
+      name: 'Newyork',
+      topping: 'cheese',
+      style: 'ravioli'
+    });
+    
+    const res = await request(app).delete(`/api/v1/pasta/${pasta.id}`);
+
+    expect(res.body).toEqual(pasta);
+    
+
+  });
 });
 
 
