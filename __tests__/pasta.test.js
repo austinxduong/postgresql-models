@@ -59,8 +59,8 @@ describe('pasta', () => {
   it('finds a pasta by id via GET', async () => {
     const pasta = await Pasta.insert({
       name: 'Spicy',
-      topping: 'pepper',
-      style: 'padthai'
+      sauce: 'pepper',
+      noodle: 'padthai'
     });
 
     const res = await request(app).get(`/api/v1/pasta/${pasta.id}`);
@@ -71,8 +71,8 @@ describe('pasta', () => {
   it('delete a pasta by id via DELETE', async () => {
     const pasta = await Pasta.insert({
       name: 'Newyork',
-      topping: 'cheese',
-      style: 'ravioli'
+      sauce: 'cheese',
+      noodle: 'ravioli'
     });
     
     const res = await request(app).delete(`/api/v1/pasta/${pasta.id}`);
@@ -85,14 +85,14 @@ describe('pasta', () => {
 
 
   it('updates a pasta by id via PUT', async () => {
-    const Pasta = await Pasta.insert({
+    const pasta = await Pasta.insert({
       name: 'Newyork',
-      topping: 'cheese',
-      style: 'ravioli'
+      sauce: 'cheese',
+      noodle: 'ravioli'
 
     });
 
-    pasta.style = 'pasta';
+    pasta.sauce = 'updated';
 
     const res = await request(app).put(`/api/v1/pasta/${pasta.id}`)
       .send(pasta);
