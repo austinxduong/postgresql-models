@@ -4,7 +4,7 @@ import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
 import Pasta from '../lib/models/Pasta.js';
-import pasta from '../lib/controllers/pasta.js';
+// import pasta from '../lib/controllers/pasta.js';
 // import Pasta from '../lib/models/Pasta.js';
 
 describe('pasta', () => {
