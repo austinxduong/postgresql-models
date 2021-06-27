@@ -53,3 +53,17 @@ describe('Burger routes', () => {
   });
 });
 
+it('find a specific/single burger via .GET findById', async () => {
+
+  const burger2 = await Burger.insert({
+    name: 'savory',
+    meat: 'chicken',
+    origin: 'northern'
+  });
+
+  const res = await request(app).get(`/api/v1/burger/${burger2.id}`);
+
+  expect(res.body).toEqual(burger2);
+
+});
+
