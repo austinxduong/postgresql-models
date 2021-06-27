@@ -26,4 +26,30 @@ describe('Burger routes', () => {
       origin: 'southern'
     });
   });
+
+
+  it('finds all burger via .GET findAll', async () => {
+    
+    const burger1 = await Burger.insert ({
+      name: 'juicy',
+      meat: 'beef',
+      origin: 'southern'
+    });
+    const burger2 = await Burger.insert ({
+      name: 'savory',
+      meat: 'chicken',
+      origin: 'northern'
+    });
+    const burger3 = await Burger.insert ({
+      name: 'crispy',
+      meat: 'bbq',
+      origin: 'western'
+    });
+
+    const res = await request(app)
+      .get('/api/v1/burger');
+    expect(res.body).toEqual([burger1, burger2, burger3]);
+
+  });
 });
+
