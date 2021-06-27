@@ -65,5 +65,19 @@ it('finds a specific/single burger via .GET findById', async () => {
   expect(res.body).toEqual(burger2);
 });
 
+it('update/edit a burger via .PUT', async () => {
+  const burger3 = await Burger.insert({
+    name: 'crispy',
+    meat: 'bbq',
+    origin: 'western'
+  });
+
+  burger3.meat = 'lobster';
+
+  const res = await request(app).put(`/api/v1/burger/${burger3.id}`)
+    .send(burger3);
+  expect(res.body).toEqual(burger3);
+});
+
 
 
