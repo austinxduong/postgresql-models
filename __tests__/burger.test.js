@@ -79,5 +79,17 @@ it('update/edit a burger via .PUT', async () => {
   expect(res.body).toEqual(burger3);
 });
 
+it('deletes a burger via .DELETE', async () => {
+  const burger1 = await Burger.delete({
+    name: 'juicy',
+    meat: 'beef',
+    origin: 'southern'
+  });
+
+  const res = await request(app).delete(`/api/v1/burger/${burger1.id}`);
+
+  expect(res.body).toEqual(burger1);
+});
+
 
 
