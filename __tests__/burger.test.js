@@ -80,7 +80,7 @@ it('update/edit a burger via .PUT', async () => {
 });
 
 it('deletes a burger via .DELETE', async () => {
-  const burger1 = await Burger.delete({
+  const burger1 = await Burger.insert({
     name: 'juicy',
     meat: 'beef',
     origin: 'southern'
