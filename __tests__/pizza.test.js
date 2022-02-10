@@ -19,6 +19,7 @@ describe('pizza', () => {
         style: 'greek' 
       });
 
+    expect(res.statusCode).toEqual(200);
     expect(res.body).toEqual({
       id: '1',
       name: 'Mykonos',
